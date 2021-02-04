@@ -69,7 +69,11 @@ http {
 
 ##上游服务器节点，权重 1（数字越大权重越大），30 秒内访问失败次数大于等于 2 次， 将在 30 秒内停止访问此节点，30 秒后计数器清零，可以重新访问。
     upstream backend_server {
-        server 47.108.80.150:5555 weight=1 max_fails=2 fail_timeout=30s;
+##每个请求按访问IP的hash结果分配，这样每个访客固定访问一个后端节点，可以解决session的问题
+        #ip_hash
+##填写后端Web服务器节点
+		server 47.108.179.180:80 weight=1 max_fails=2 fail_timeout=30s;
+        server 47.108.80.150:80 weight=1 max_fails=2 fail_timeout=30s;
     }
     server {
         listen       80;
