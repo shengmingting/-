@@ -1,0 +1,17 @@
+官网下载zabbix client安装包
+	列如：wget https://cdn.zabbix.com/zabbix/binaries/stable/5.2/5.2.4/zabbix_agent-5.2.4-linux-3.0-amd64-static.tar.gz
+	可以下载rpm包安装客户端即可
+		https://repo.zabbix.com/zabbix/
+1.安装依赖包
+	yum -y install net-snmp net-snmp-devel
+	rpm -ivh zabbix-agent-5.2.4-1.el7.x86_64.rpm
+	
+	修改zabbix_agentd.conf配置文件 /etc/zabbix/zabbix_agentd.conf
+		Server=192.168.1.231
+		LogFile=/var/log/zabbix/zabbix_agentd.log
+		ServerActive=192.168.1.231
+		Hostname=client
+		HostMetadataItem=system.uname
+	systemctl start zabbix-agent
+	systemctl enable zabbix-agent
+	systemctl status zabbix-agent

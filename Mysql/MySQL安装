@@ -1,0 +1,29 @@
+官网下载mysql yum存储库安装
+	例如：https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm
+	然后执行：yum localinstall mysql80-community-release-el7-3.noarch.rpm
+	yum repolist enabled | grep "mysql.*-community.*"
+	
+	如果是centos8版本的linux
+	禁用默认的MySQL模块
+	（仅限EL8系统）基于RHEL8和Oracle Linux 8的基于EL8的系统包括默认情况下启用的MySQL模块。除非禁用此模块，否则它将屏蔽MySQL存储库提供的软件包。要禁用包含的模块并使MySQL存储库软件包可见，请使用以下命令（对于启用dnf的系统，将命令中的yum替换 为 dnf）：
+	yum module disable mysql
+	
+	
+	yum -y install mysql-community-server
+	启动mysql：
+		systemctl start mysqld
+		systemctl enable mysqld
+		systemctl status mysqld
+	查看自动生成的密码：
+		grep 'temporary password' /var/log/mysqld.log
+	通过实施的默认密码策略validate_password要求密码至少包含一个大写字母，
+	一个小写字母，一位数字和一个特殊字符，并且密码总长度至少为8个字符。
+	
+	alter user root@'localhost' identified by 'smc@!A123.';
+ 设置密码只限制长度为8即可：
+	set global validate_password.policy=0;
+	
+	create user zabbix@'%' identified by 'achao55';
+	create user zabbix@'localhost' identified by 'achao55';
+	grant select,process,super,replication client on *.* to zabbix@'%';
+	grant select,process,super,replication client on *.* to zabbix@'%' identified by 'achao666' 
