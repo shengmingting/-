@@ -58,6 +58,11 @@ http {
 [root@client etc]# /usr/local/nginx/sbin/nginx
 [root@client etc]# /usr/local/php/sbin/php-fpm
 
+杀掉php-fpm服务
+[root@iZ2vcblk66sst1khiiiiryZ /]# pkill -9 php-fpm
+
+php-fpm 关闭：kill -INT `cat /usr/run/php-fpm.pid`
+php-fpm 重启：kill -USR2 `cat /usr/run/php-fpm.pid`
 
 
 
