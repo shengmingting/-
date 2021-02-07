@@ -100,7 +100,7 @@ zabbix:
 		#主机名是唯一的
 		Hostname=docker 
 		#设置默认模板，server端自动发现
-		HostMetadateItem=system.uname
+		HostMetadataItem=system.uname
 		
 	编辑zabbix_server配置文件
 	mv zabbix_server.conf zabbix_server.conf.bak

@@ -61,4 +61,5 @@ xampp:
 		找到export LD_ASSUME_KERNEL=2.2.5这一行，
 		并修改内容为export LD_ASSUME_KERNEL=3.10.0，保存退出就可以解决了
 		你可以看到你自己的系统版本是多少 more /proc/version 
+	[root@mysql ~]# yum -y install libnsl
 	lammp start
